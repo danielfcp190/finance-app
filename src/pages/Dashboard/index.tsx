@@ -1,6 +1,7 @@
 import Button from "components/atoms/Button";
 import { TemplateContainer } from "components/templates";
-import Card from "../../../pages/dashboard/components/Card";
+import Router from "next/router";
+import Card from "./components/Card";
 
 export default function Dashboard() {
   const array = [
@@ -11,12 +12,19 @@ export default function Dashboard() {
     { id: "4", expense: "Food", category: "essentials", cost: "400.00" },
     { id: "5", expense: "Pets", category: "essentials", cost: "100.00" },
   ];
+
+  const handleNavigateToAddNewExpense = () => {
+    Router.push("/dashboard/add");
+  };
+
   return (
     <TemplateContainer>
       <header className="w-full max-w-screen-lg flex justify-between items-center h-1/6">
         <span className="font-bold text-2xl">Expense tracker</span>
         <nav className="flex gap-4">
-          <Button>Add new expense</Button>
+          <Button onClick={handleNavigateToAddNewExpense}>
+            Add new expense
+          </Button>
           <Button variant="ghost">Logout</Button>
         </nav>
       </header>
