@@ -29,7 +29,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/seed.js", "pages/api/users/login.js", "models/User.js", "utils/auth.js", "utils/data.js", "utils/db.js", "pages/_app.tsx"  ],
   "exclude": [
     "node_modules"
   ]

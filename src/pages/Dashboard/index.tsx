@@ -1,7 +1,10 @@
 import Button from "components/atoms/Button";
 import { TemplateContainer } from "components/templates";
 import Router from "next/router";
+import { useContext } from "react";
+import { Store } from "../../../utils/Store";
 import Card from "./components/Card";
+import jsCookie from "js-cookie";
 
 export default function Dashboard() {
   const array = [
@@ -13,8 +16,16 @@ export default function Dashboard() {
     { id: "5", expense: "Pets", category: "essentials", cost: "100.00" },
   ];
 
+  const { state, dispatch } = useContext(Store);
+
   const handleNavigateToAddNewExpense = () => {
     Router.push("/dashboard/add");
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: "USER_LOGOUT" });
+    jsCookie.remove("userInfo");
+    Router.push("/");
   };
 
   return (
@@ -25,7 +36,9 @@ export default function Dashboard() {
           <Button onClick={handleNavigateToAddNewExpense}>
             Add new expense
           </Button>
-          <Button variant="ghost">Logout</Button>
+          <Button variant="ghost" onClick={handleLogout}>
+            Logout
+          </Button>
         </nav>
       </header>
       <main className="w-full bg-purple-50 max-w-screen-lg h-5/6 grid grid-cols-3 overflow-y-scroll content-start bg-purple-50 gap-4 p-4">
